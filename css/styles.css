@@ -26,6 +26,10 @@ h1{
 }
 
 .carta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 117px;
     height: 146px;
 
@@ -40,6 +44,11 @@ h1{
 }
 
 .verso{
+    width: 100px;
+    max-height: 100px;
+}
+
+.esconder{
     display: none;
 }
 
