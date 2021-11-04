@@ -1,20 +1,27 @@
 body{
     font-family: 'Roboto', sans-serif;
 
-    background-color: #e5e5e5;
+    background-color: #eef9bf;
 
     box-sizing: border-box;
 }
 
 h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
     font-weight: bold;
     font-size: 56px;
     letter-spacing: -0.004em;
 
     color: #75B79E;
+
+    margin: 40px 12px
 }
 
-.AreaJogo{
+.GameBoard{
     width: 100%;
     
     display: flex;
@@ -25,36 +32,60 @@ h1{
     
 }
 
-.carta{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.card{
     width: 117px;
     height: 146px;
 
     margin: 17px;
 
+    position: relative;
+}
+
+.face{
+
+    width: 100%;
+    height: 100%;
+
     background-color: #a7e9af;
+
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
 
-.carta img{
+.front-face img, .back-face img{
     width: 100px;
-    max-height: 100px;
+    height: auto;
 }
 
-.verso{
-    width: 100px;
-    max-height: 100px;
+.back-face{
+    transform: rotateY(180deg);
 }
 
-.esconder{
+.card:hover .back-face{
+    transform: rotateY(0deg);
+}
+
+.card:hover .front-face{
+    transform: rotateY(-180deg);
+}
+
+.hide{
     display: none;
 }
 
 @media (max-width: 360px){
     h1{
         font-size: 36px;
+        margin-bottom: 15px;
     }
 
 } 
