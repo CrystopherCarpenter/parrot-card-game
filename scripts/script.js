@@ -1,4 +1,5 @@
 let nCards = 0;
+let nPlays = 0;
 
 numCards();
 
@@ -19,15 +20,16 @@ function gameCards() {
     for (let i = 0; i < (nCards / 2); i++) {
         for (let j = 0; j < 2; j++) {
 
-            cards.push(`<div class="card" id="${ids[i]}" data-identifier="card" onclick="rotateCard(this)">
-            <div class="front-face face" data-identifier="card">
-                <img src="assets/front.png" alt="frente">
-            </div>
-            <div class="back-face face" data-identifier="back-face">
-                <img src="assets/${ids[i]}parrot.gif" alt="verso">
-            </div>
-        </div>
-    `);
+            cards.push(`
+                <div class="card" id="${ids[i]}" data-identifier="card" onclick="rotateCard(this)">
+                    <div class="front-face face" data-identifier="card">
+                        <img src="assets/front.png" alt="frente">
+                    </div>
+                    <div class="back-face face" data-identifier="back-face">
+                        <img src="assets/${ids[i]}parrot.gif" alt="verso">
+                    </div>
+                </div>
+            `);
         }
     }
 
@@ -44,7 +46,15 @@ function comparador() {
 }
 
 function rotateCard(flippedCard) {
-    flippedCard.children[0].classList.add("front-faceRotate");
+    const alreadyFlipped = flippedCard.children[0].classList.contains("front-faceRotate")
 
+    flippedCard.children[0].classList.add("front-faceRotate");
     flippedCard.children[1].classList.add("back-faceRotate");
+
+    if (alreadyFlipped) {
+        return;
+    }
+    nPlays++;
+
+    console.log(nPlays);
 }
