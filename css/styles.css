@@ -70,11 +70,11 @@ h1{
     transform: rotateY(180deg);
 }
 
-.card:hover .back-face{
+.back-faceRotate{
     transform: rotateY(0deg);
 }
 
-.card:hover .front-face{
+.front-faceRotate{
     transform: rotateY(-180deg);
 }
 
