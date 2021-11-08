@@ -7,7 +7,7 @@ numCards();
 
 function numCards() {
 
-    nCards = parseInt(prompt("Com quantas cartas você quer jogar? (números pares de 4 a 14)"));
+    nCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
     while ((nCards % 2) !== 0 || nCards < 4 || nCards > 14) {
         nCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
     }
@@ -28,14 +28,14 @@ function gameCards() {
 
             cards.push(`
                 <div class="card" id="${ids[i]}" data-identifier="card" onclick="rotateCard(this)">
-                    <div class="front-face face" data-identifier="back-face">
+                    <div class="front-face face" data-identifier="front-face">
                         <img src="assets/front.png" alt="frente">
                     </div>
-                    <div class="back-face face" data-identifier="front-face">
+                    <div class="back-face face" data-identifier="back-face">
                         <img src="assets/${ids[i]}parrot.gif" alt="verso">
                     </div>
                 </div>
-            `); //os data-identifier front-face e back-face estavam invertidos, correção com orientação do Dina
+            `);
         }
     }
 
