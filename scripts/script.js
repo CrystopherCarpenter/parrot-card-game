@@ -54,6 +54,12 @@ function rotateCard(flippedCard) {
 
     const flippedCardCont = document.querySelectorAll(".front-faceRotate").length;
 
+    if (alreadyFlipped || flippedCardCont > 1) {
+        return;
+    }
+    nPlays++;
+    console.log(nPlays);
+
     if (flippedCardCont < 2) {
         flippedCard.children[0].classList.add("front-faceRotate");
         flippedCard.children[1].classList.add("back-faceRotate");
@@ -70,12 +76,6 @@ function rotateCard(flippedCard) {
     }
 
 
-
-    if (alreadyFlipped || flippedCardCont > 1) {
-        return;
-    }
-    nPlays++;
-    console.log(nPlays);
 }
 
 function unflipCards() {
