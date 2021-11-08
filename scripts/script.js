@@ -1,6 +1,5 @@
 let nCards = 0;
 let nPlays = 0;
-let match = [];
 
 numCards();
 
@@ -52,30 +51,49 @@ function rotateCard(flippedCard) {
 
     const alreadyFlipped = flippedCard.children[0].classList.contains("front-faceRotate")
 
+    const alreadyCorrect = flippedCard.children[0].classList.contains("front-faceCorrect")
+
     const flippedCardCont = document.querySelectorAll(".front-faceRotate").length;
 
-    if (alreadyFlipped || flippedCardCont > 1) {
+    if (alreadyFlipped || alreadyCorrect || flippedCardCont > 1) {
         return;
     }
     nPlays++;
-    console.log(nPlays);
 
     if (flippedCardCont < 2) {
         flippedCard.children[0].classList.add("front-faceRotate");
         flippedCard.children[1].classList.add("back-faceRotate");
 
-        let card1 = ((document.querySelectorAll(".front-faceRotate")[0]).parentElement.id);
-        let card2 = ((document.querySelectorAll(".front-faceRotate")[1]).parentElement.id);
-        console.log(card1, card2);
+        let card1 = ((document.querySelectorAll(".front-faceRotate")[0]).parentElement);
+        let card2 = ((document.querySelectorAll(".front-faceRotate")[1]).parentElement);
 
-        if (card1 === card2) {
-            return;
+        if (card1.id === card2.id) {
+            card1.children[0].classList.remove("front-faceRotate");
+            card1.children[1].classList.remove("back-faceRotate");
+
+            card1.children[0].classList.add("front-faceCorrect");
+            card1.children[1].classList.add("back-faceCorrect");
+
+            card2.children[0].classList.remove("front-faceRotate");
+            card2.children[1].classList.remove("back-faceRotate"); 2
+
+            card2.children[0].classList.add("front-faceCorrect");
+            card2.children[1].classList.add("back-faceCorrect");
+
         } else {
             setTimeout(unflipCards, 1000);
         }
     }
 
+    const correctCards = document.querySelectorAll(".front-faceCorrect").length;
 
+    if (correctCards === nCards) {
+        alert(`Você ganhou em ${nPlays} jogadas!`);
+        let reiniciar = prompt("Gostaria de reiniciar a partida?");
+        if (reiniciar === `sim` || reiniciar === `Sim` || reiniciar === `SIM`) {
+            Reiniciar();
+        }
+    }
 }
 
 function unflipCards() {
@@ -87,4 +105,25 @@ function unflipCards() {
         let unflipBack = document.querySelector(".back-faceRotate");
         unflipBack.classList.remove("back-faceRotate");
     }
+}
+
+function Reiniciar() {
+    const previousGameCardsFront = document.querySelectorAll(".front-faceCorrect");
+    const previousGameCardsBack = document.querySelectorAll(".back-faceCorrect");
+
+    for (let i = 0; i < previousGameCardsFront.length; i++) {
+        previousGameCardsFront[i].classList.remove("front-faceCorrect");
+        previousGameCardsBack[i].classList.remove("back-faceCorrect");
+    }
+
+    const previousGameBoard = document.querySelector(".GameBoard");
+
+    previousGameBoard.innerHTML = "";
+
+    nCards = 0;
+    nPlays = 0;
+
+    numCards();
+
+
 }

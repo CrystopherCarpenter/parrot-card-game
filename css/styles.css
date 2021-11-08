@@ -71,11 +71,11 @@ h1{
     transform: rotateY(180deg);
 }
 
-.back-faceRotate{
+.back-faceRotate, .back-faceCorrect{
     transform: rotateY(0deg);
 }
 
-.front-faceRotate{
+.front-faceRotate, .front-faceCorrect{
     transform: rotateY(-180deg);
 }
 
