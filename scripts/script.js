@@ -7,7 +7,7 @@ numCards();
 
 function numCards() {
 
-    nCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
+    nCards = parseInt(prompt("Com quantas cartas você quer jogar? (números pares de 4 a 14)");
     while ((nCards % 2) !== 0 || nCards < 4 || nCards > 14) {
         nCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
     }
