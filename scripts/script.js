@@ -21,6 +21,8 @@ function gameCards() {
     const cardsPrint = document.querySelector(".GameBoard");
     const cards = [];
 
+    ids.sort(comparador);
+
     for (let i = 0; i < (nCards / 2); i++) {
         for (let j = 0; j < 2; j++) {
 
@@ -66,11 +68,25 @@ function rotateCard(flippedCard) {
     nPlays++;
 
     if (flippedCardCont < 2) {
-        flippedCard.children[0].classList.add("front-faceRotate");
-        flippedCard.children[1].classList.add("back-faceRotate");
 
-        let card1 = ((document.querySelectorAll(".front-faceRotate")[0]).parentElement);
-        let card2 = ((document.querySelectorAll(".front-faceRotate")[1]).parentElement);
+        flipCard(flippedCard);
+    }
+
+    const correctCards = document.querySelectorAll(".front-faceCorrect").length;
+
+    if (correctCards === nCards) {
+        setTimeout(endGame, 501);
+    }
+}
+
+function flipCard(flip) {
+    flip.children[0].classList.add("front-faceRotate");
+    flip.children[1].classList.add("back-faceRotate");
+
+    let card1 = ((document.querySelectorAll(".front-faceRotate")[0]).parentElement);
+    let card2;
+    if ((document.querySelectorAll(".front-faceRotate")).length === 2) {
+        card2 = ((document.querySelectorAll(".front-faceRotate")[1]).parentElement);
 
         if (card1.id === card2.id) {
 
@@ -89,12 +105,6 @@ function rotateCard(flippedCard) {
         } else {
             setTimeout(unflipCards, 1000);
         }
-    }
-
-    const correctCards = document.querySelectorAll(".front-faceCorrect").length;
-
-    if (correctCards === nCards) {
-        setTimeout(endGame, 501);
     }
 }
 
