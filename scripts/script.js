@@ -28,14 +28,14 @@ function gameCards() {
 
             cards.push(`
                 <div class="card" id="${ids[i]}" data-identifier="card" onclick="rotateCard(this)">
-                    <div class="front-face face" data-identifier="front-face">
+                    <div class="front-face face" data-identifier="back-face">
                         <img src="assets/front.png" alt="frente">
                     </div>
-                    <div class="back-face face" data-identifier="back-face">
+                    <div class="back-face face" data-identifier="front-face">
                         <img src="assets/${ids[i]}parrot.gif" alt="verso">
                     </div>
                 </div>
-            `);
+            `);//Correção dos data-identifier, que estavm invertidos, orientação do instrutor Dina
         }
     }
 
