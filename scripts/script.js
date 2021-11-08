@@ -1,5 +1,7 @@
 let nCards = 0;
 let nPlays = 0;
+let time = 0;
+let idInterval;
 
 numCards();
 
@@ -41,6 +43,9 @@ function gameCards() {
 
         cardsPrint.innerHTML += cards[i];
     }
+
+    idInterval = setInterval(timer, 1000);;
+
 }
 
 function comparador() {
@@ -105,7 +110,10 @@ function unflipCards() {
 }
 
 function endGame() {
-    alert(`Você ganhou em ${nPlays} jogadas!`);
+    alert(`Você ganhou em ${nPlays} jogadas e levou ${time} segundos!`);
+
+    clearInterval(idInterval);
+
     let restart = prompt("Gostaria de reiniciar a partida?");
     if (restart === `sim` || restart === `Sim` || restart === `SIM`) {
         Restart();
@@ -127,6 +135,26 @@ function Restart() {
 
     nCards = 0;
     nPlays = 0;
+    time = 0;
 
     numCards();
+}
+
+function timer() {
+    time++;
+
+    timerSize();
+}
+
+function timerSize() {
+    let timer = `${time}`;
+    while (timer.length < 3) {
+        timer = `0${timer}`;
+        while (timer.length < 2) {
+            timer = `0${timer}`;
+        }
+    }
+
+    let screenTimer = document.querySelector(".timer");
+    screenTimer.innerHTML = timer;
 }

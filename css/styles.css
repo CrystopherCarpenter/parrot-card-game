@@ -21,6 +21,25 @@ h1{
     margin: 40px 12px
 }
 
+.timer{
+    width: 50px;
+    height: 25px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    top: 12px;
+    right: 20px;
+    z-index: 1;
+        
+    background-color: #c6dd60;
+    border: 1px solid #e4f3a4;
+    border-radius: 10px;
+    
+}
+
 .GameBoard{
     width: 100%;
     
