@@ -24,7 +24,7 @@ function gameCards() {
 
             cards.push(`
                 <div class="card" id="${ids[i]}" data-identifier="card" onclick="rotateCard(this)">
-                    <div class="front-face face" data-identifier="card">
+                    <div class="front-face face" data-identifier="front-face">
                         <img src="assets/front.png" alt="frente">
                     </div>
                     <div class="back-face face" data-identifier="back-face">
@@ -68,6 +68,7 @@ function rotateCard(flippedCard) {
         let card2 = ((document.querySelectorAll(".front-faceRotate")[1]).parentElement);
 
         if (card1.id === card2.id) {
+
             card1.children[0].classList.remove("front-faceRotate");
             card1.children[1].classList.remove("back-faceRotate");
 
@@ -88,11 +89,7 @@ function rotateCard(flippedCard) {
     const correctCards = document.querySelectorAll(".front-faceCorrect").length;
 
     if (correctCards === nCards) {
-        alert(`Você ganhou em ${nPlays} jogadas!`);
-        let reiniciar = prompt("Gostaria de reiniciar a partida?");
-        if (reiniciar === `sim` || reiniciar === `Sim` || reiniciar === `SIM`) {
-            Reiniciar();
-        }
+        setTimeout(endGame, 501);
     }
 }
 
@@ -107,7 +104,15 @@ function unflipCards() {
     }
 }
 
-function Reiniciar() {
+function endGame() {
+    alert(`Você ganhou em ${nPlays} jogadas!`);
+    let restart = prompt("Gostaria de reiniciar a partida?");
+    if (restart === `sim` || restart === `Sim` || restart === `SIM`) {
+        Restart();
+    }
+}
+
+function Restart() {
     const previousGameCardsFront = document.querySelectorAll(".front-faceCorrect");
     const previousGameCardsBack = document.querySelectorAll(".back-faceCorrect");
 
@@ -124,6 +129,4 @@ function Reiniciar() {
     nPlays = 0;
 
     numCards();
-
-
 }
