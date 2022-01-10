@@ -7,11 +7,8 @@ numCards();
 
 function numCards() {
 
-<<<<<<< HEAD
-    nCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
-=======
     nCards = parseInt(prompt("Com quantas cartas você quer jogar?");
->>>>>>> 478a099a1016ca81ca999cd1c8f572aa79ba20c7
+
     while ((nCards % 2) !== 0 || nCards < 4 || nCards > 14) {
         nCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
     }
